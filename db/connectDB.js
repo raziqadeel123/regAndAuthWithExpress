@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const connectDB = async (DATABASE_URL) => {
   try {
     const DB_OPTIONS = {
-      bdName: 'registration',
+      dbName: 'registration',
     };
     mongoose.set('strictQuery', true);
     await mongoose.connect(DATABASE_URL, DB_OPTIONS);
