@@ -27,6 +27,31 @@ class UserController {
   static login = (req, res) => {
     res.render('login');
   };
+
+  static verifyLogin = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const result = await UserModel.findOne({
+        email: email,
+      });
+      // console.log(result);
+
+      if (result != null) {
+        if (result.email == email && result.password == password) {
+          res.send(`<p>Dashboard ---- ${result}</p>`);
+        } else {
+          res.send('Email or Password is not valid');
+        }
+      } else {
+        res.send('<p>Your not a registed User</p>');
+      }
+
+      // res.send('Login');
+      // console.log(result.email);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export default UserController;
